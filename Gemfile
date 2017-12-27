@@ -35,7 +35,7 @@ gem 'bootsnap', require: false
 gem 'bootstrap', '4.0.0.alpha6'
 gem 'devise'
 gem 'slim-rails'
-
+gem 'jquery-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

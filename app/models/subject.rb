@@ -4,4 +4,9 @@ class Subject < ApplicationRecord
   has_many :videos
 
   validates :title, presence: true
+
+  def user_attributes=(users_attributes)
+    raise users_attributes
+  end
+
 end

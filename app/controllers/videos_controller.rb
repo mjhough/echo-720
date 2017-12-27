@@ -5,7 +5,7 @@ class VideosController < ApplicationController
   before_action :is_admin?, only: %i(new edit create update)
 
   def index
-    @videos = current_user.videos
+    @videos = user_videos
   end
 
   def show
@@ -13,11 +13,13 @@ class VideosController < ApplicationController
 
   private
 
+  def user_videos
+    current_user.videos
+  end
+
   def find_video!
     Video.find(params[:id])
   end
-  
-  private
 
   def authenticate_access
     if !current_user.can_access_video(@video)

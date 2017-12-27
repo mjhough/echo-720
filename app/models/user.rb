@@ -10,6 +10,10 @@ class User < ApplicationRecord
 
   validates :email, presence: true
 
+  def students
+    where(teacher: false)
+  end
+
   def teacher?
     !!teacher
   end
