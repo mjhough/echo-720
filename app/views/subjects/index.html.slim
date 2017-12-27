@@ -1,0 +1,8 @@
+h1 All Subjects
+br
+ul
+  li
+    -@subjects.each do |subject|
+      h3=link_to subject.title, subject_path(subject)
+      -subject.videos.each do |video|
+       h4=link_to video.title, subject_video_path(subject, video)

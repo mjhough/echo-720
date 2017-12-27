@@ -1,0 +1,5 @@
+h1=@subject.title
+
+-@subject.videos.each do |video|
+  h3=link_to video.title, subject_video_path(video) 
+  p=truncate(video.description, length: 65)

@@ -30,6 +30,12 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Custom
+gem 'bootsnap', require: false
+gem 'bootstrap', '4.0.0.alpha6'
+gem 'devise'
+gem 'slim-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

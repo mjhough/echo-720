@@ -1,0 +1,4 @@
+h1=@video.title
+h2=link_to @video.subject.title, subject_path(@video.subject)
+h3=@video.description
+=image_tag(@video.image) unless @video.image.nil?
