@@ -13,6 +13,10 @@ class User < ApplicationRecord
   def teacher?
     !!teacher
   end
+
+  def can_access_video(video)
+    videos.include?(video)
+  end
 end
 
 

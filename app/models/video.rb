@@ -4,4 +4,5 @@ class Video < ApplicationRecord
   validates :image, presence: true
   validates :title, presence: true
   validates :description, length: { minimum: 100 }
+
 end

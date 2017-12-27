@@ -1,6 +1,8 @@
--@videos.each do |video|
-  h2=link_to video.title, subject_video_path(video.subject, video)
-  h4=link_to video.subject.title, subject_path(video.subject)
-  p=truncate(video.description, length: 65)
-
+-if !@videos.empty?
+  -@videos.each do |video|
+    h2=link_to video.title, subject_video_path(video.subject, video)
+    h4=link_to video.subject.title, subject_path(video.subject)
+    p=truncate(video.description, length: 65)
+-else
+  |Your subjects have not yet released any videos
 
