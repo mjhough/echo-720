@@ -9,4 +9,12 @@ class Subject < ApplicationRecord
     raise users_attributes
   end
 
+  def user_emails
+    users.pluck(:emails).first 
+  end
+
+  def user_emails=(user_emails)
+    byebug
+  end
+
 end

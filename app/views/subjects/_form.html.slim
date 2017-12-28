@@ -2,9 +2,8 @@
   = f.label :title
   = f.text_field :title
   br
-  = f.fields_for :users do |user_builder|
-    = user_builder.label 'Enter the email of each student separated by commas.'
-    br
-    = user_builder.text_field :email
+  = f.label 'Enter the email of each student separated by commas.'
+  br
+  = f.text_field :user_emails
   br
   = f.submit
