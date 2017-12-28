@@ -14,7 +14,10 @@ class Subject < ApplicationRecord
   end
 
   def user_emails=(user_emails)
-    byebug
+    emails = user_emails.split(',')
+    emails.each do |email|
+      user = User.find_by(email: email)
+      users << user if user
+    end
   end
-
 end

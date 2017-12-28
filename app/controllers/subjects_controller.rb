@@ -16,7 +16,12 @@ class SubjectsController < ApplicationController
   def create
     unless subject = Subject.find_by(title: subject_params[:title])
       subject = Subject.new(subject_params)
-      byebug 
+      subject.users << current_user
+      if subject.save
+        redirect_to root_path, alert: "#{subject.title} successfully created."
+      else
+        redirect_to :new_subject_path
+      end
     else
       redirect_to edit_subject_path(subject), alert: 'Subject already exists. Please edit the subject instead.' 
     end
