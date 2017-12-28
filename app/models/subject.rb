@@ -10,7 +10,7 @@ class Subject < ApplicationRecord
   end
 
   def user_emails
-    users.pluck(:emails).first 
+    users.pluck(:email).join(', ')
   end
 
   def user_emails=(user_emails)

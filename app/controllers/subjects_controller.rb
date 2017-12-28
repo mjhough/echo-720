@@ -10,7 +10,6 @@ class SubjectsController < ApplicationController
 
   def new
     @subject = Subject.new
-    render partial: 'form', locals: { subject: @subject }
   end
 
   def create
@@ -18,9 +17,9 @@ class SubjectsController < ApplicationController
       subject = Subject.new(subject_params)
       subject.users << current_user
       if subject.save
-        redirect_to root_path, alert: "#{subject.title} successfully created."
+        redirect_to root_path, notice: "#{subject.title} successfully created."
       else
-        redirect_to :new_subject_path
+        redirect_to new_subject_path, alert: 'There was an error. Please check that you entered the correct information and try again.'
       end
     else
       redirect_to edit_subject_path(subject), alert: 'Subject already exists. Please edit the subject instead.' 
@@ -28,7 +27,6 @@ class SubjectsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
