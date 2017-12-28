@@ -18,8 +18,12 @@ class User < ApplicationRecord
     !!teacher
   end
 
-  def can_access_video(video)
-    videos.include?(video)
+  def can_access_video(video, subject)
+    videos.include?(video) && subjects.include?(subject)
+  end
+
+  def can_access_subject(subject)
+    subjects.include?(subject)
   end
 end
 

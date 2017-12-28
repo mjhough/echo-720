@@ -3,7 +3,7 @@ p= link_to "Edit #{@subject.title}", edit_subject_path(@subject)
 p= link_to 'Upload Video', new_subject_video_path(@subject)
 - if !@subject.videos.empty?
   - @subject.videos.each do |video|
-    h3= link_to video.title, subject_video_path(video) 
+    h3= link_to video.title, subject_video_path(@subject, video) 
     p= truncate(video.description, length: 65)
 - else
   h3 There are currently no videos available for this subject.

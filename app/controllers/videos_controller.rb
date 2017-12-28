@@ -1,8 +1,8 @@
 class VideosController < ApplicationController
-  before_action :find_video!, only: %i(show edit)
-  before_action :find_subject!, only: %i(create update edit new)
+  before_action :find_video!, only: %i(show edit update)
+  before_action :find_subject!, only: %i(create new show edit)
   before_action :authenticate_user!, only: %i(index show)
-  before_action :authenticate_access, only: %i(show)
+  before_action :authenticate_access, only: %i(show edit)
   before_action :is_admin?, only: %i(new edit create update)
 
 
@@ -28,11 +28,15 @@ class VideosController < ApplicationController
   end
 
   def edit
-    @send_to_url = subject_video_path(@subject, @video)
+    @send_to_url = subject_video_path(@video.subject, @video)
   end
 
   def update
-    raise params.inspect
+    if @video.update(video_params)
+      redirect_to subject_video_path(@video.subject, @video), alert: "Successfully updated #{@video.title}."
+    else
+      redirect_to edit_subject_video_path(@video.subject, @video), alert: 'There was an issue updating the video. Please check that the information you entered is correct.'
+    end
   end
 
   private
@@ -50,7 +54,7 @@ class VideosController < ApplicationController
   end
 
   def authenticate_access
-    if !current_user.can_access_video(@video)
+    if !current_user.can_access_video(@video, @subject)
       redirect_to root_path, alert: 'Access Denied'
     end
   end
