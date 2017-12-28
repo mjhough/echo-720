@@ -15,20 +15,21 @@ class VideosController < ApplicationController
 
   def new
     @video = Video.new 
-    @send_to_url = subject_videos_path(@subject)
+    @send_to_url = subject_videos_url(@subject)
   end
 
   def create
-    video = @subject.videos.build(video_params)
-    if video.save
-      redirect_to subject_video_path(@subject, video), alert: 'Video successfully created.'
+    @video = @subject.videos.build(video_params)
+    if @video.save
+      redirect_to subject_video_path(@subject, @video), alert: 'Video successfully created.'
     else
-      redirect_to new_subject_video_path(@subject), alert: 'There was an error creating the video. Please check your entries and try again.'
+      @send_to_url = subject_videos_url(@subject)
+      render :new,  alert: 'There was an error creating the video. Please check your entries and try again.'
     end
   end
 
   def edit
-    @send_to_url = subject_video_path(@video.subject, @video)
+    @send_to_url = subject_video_url(@video.subject, @video)
   end
 
   def update

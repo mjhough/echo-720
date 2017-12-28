@@ -1,9 +1,18 @@
+.errors
+  - if subject.errors.any?
+    h3 Oops! We've run into some issues:
+    ul
+      - subject.errors.full_messages.each do |msg|
+        li
+          p= msg
+
 = form_for(subject) do |f|
-  = f.label :title
-  = f.text_field :title
+  .form-field
+    = f.label :title
+    = f.text_field :title
   br
-  = f.label 'Enter the email of each student separated by commas.'
-  br
-  = f.text_field :user_emails
+  .form-field
+    = f.label 'Enter the email of each student separated by commas.'
+    = f.text_field :user_emails
   br
   = f.submit

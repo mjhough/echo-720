@@ -1,7 +1,7 @@
 class SubjectsController < ApplicationController
-  before_action :find_subject!, only: %i(show edit update new)
+  before_action :find_subject!, only: %i(show edit update)
   before_action :authenticate_user!
-  before_action :authenticate_access, only: %i(show edit new)
+  before_action :authenticate_access, only: %i(show edit)
   before_action :is_admin?, only: %i(new create edit update)
 
   def index
@@ -16,16 +16,16 @@ class SubjectsController < ApplicationController
   end
 
   def create
-    unless subject = Subject.find_by(title: subject_params[:title])
-      subject = Subject.new(subject_params)
-      subject.users << current_user
-      if subject.save
-        redirect_to root_path, notice: "#{subject.title} successfully created."
+    unless @subject = Subject.find_by(title: subject_params[:title])
+      @subject = Subject.new(subject_params)
+      @subject.users << current_user
+      if @subject.save
+        redirect_to root_path, notice: "#{@subject.title} successfully created."
       else
-        redirect_to new_subject_path, alert: 'There was an issue. Please check that you entered the correct information and try again.'
+        render :new, alert: 'There was an issue. Please check that you entered the correct information and try again.'
       end
     else
-      redirect_to edit_subject_path(subject), alert: 'Subject already exists. Please edit the subject instead.' 
+      redirect_to edit_subject_path(@subject), alert: 'Subject already exists. Please edit the subject instead.' 
     end
   end
 

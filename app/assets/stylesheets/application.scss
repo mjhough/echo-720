@@ -4,3 +4,22 @@
   color: red;
   padding: 0 3%;
 }
+
+.field_with_errors {
+  input, textarea {
+    border: 1px solid red;
+  }
+}
+
+.form-field {
+  width: 22%;
+  input, textarea {
+    width: 100%;
+  }
+}
+
+.errors {
+  p {
+    color: red;
+  }
+}
