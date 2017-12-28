@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :find_subject!, only: %i(show edit)
+  before_action :find_subject!, only: %i(show edit update)
 
   def index
     @subjects = user_subjects
@@ -19,7 +19,7 @@ class SubjectsController < ApplicationController
       if subject.save
         redirect_to root_path, notice: "#{subject.title} successfully created."
       else
-        redirect_to new_subject_path, alert: 'There was an error. Please check that you entered the correct information and try again.'
+        redirect_to new_subject_path, alert: 'There was an issue. Please check that you entered the correct information and try again.'
       end
     else
       redirect_to edit_subject_path(subject), alert: 'Subject already exists. Please edit the subject instead.' 
@@ -30,7 +30,11 @@ class SubjectsController < ApplicationController
   end
 
   def update
-
+    if @subject.update(subject_params)
+      redirect_to subjects_path, notice: 'Successfully updated subject.'
+    else
+      redirect_to edit_subject_path, alert: 'There was an issue. Please check that you entered the correct information and try again.'
+    end
   end
 
   def user_subjects

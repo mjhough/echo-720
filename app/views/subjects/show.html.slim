@@ -1,4 +1,5 @@
 h1= @subject.title
+p= link_to "Edit #{@subject.title}", edit_subject_path(@subject)
 - if !@subject.videos.empty?
   - @subject.videos.each do |video|
     h3= link_to video.title, subject_video_path(video) 
