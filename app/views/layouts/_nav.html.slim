@@ -16,7 +16,7 @@ nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
 
     ul.navbar-nav.ml-auto
       li.nav-item.teacher-notify
-        = "TEACHER" if current_user.teacher?
+        = "TEACHER" if current_user.try(:teacher?)
       li.nav-item
         =current_user.email if current_user
 

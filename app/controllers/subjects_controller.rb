@@ -1,5 +1,7 @@
 class SubjectsController < ApplicationController
   before_action :find_subject!, only: %i(show edit update)
+  before_action :authenticate_user!, only: %i(index show)
+  before_action :is_admin?, only: %i(new create edit update)
 
   def index
     @subjects = user_subjects
@@ -50,5 +52,11 @@ class SubjectsController < ApplicationController
 
   def subject_params
     params.require(:subject).permit(:title, :user_emails)
+  end
+
+  def is_admin?
+    if !current_user.try(:teacher)
+      redirect_to root_path, alert: 'Access Denied'
+    end
   end
 end

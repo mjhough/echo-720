@@ -1,6 +1,6 @@
 class VideosController < ApplicationController
-  before_action :find_video!, only: %i(show)
-  before_action :find_subject!, only: %i(create update)
+  before_action :find_video!, only: %i(show edit)
+  before_action :find_subject!, only: %i(create update edit new)
   before_action :authenticate_user!, only: %i(index show)
   before_action :authenticate_access, only: %i(show)
   before_action :is_admin?, only: %i(new edit create update)
@@ -15,6 +15,7 @@ class VideosController < ApplicationController
 
   def new
     @video = Video.new 
+    @send_to_url = subject_videos_path(@subject)
   end
 
   def create
@@ -24,6 +25,14 @@ class VideosController < ApplicationController
     else
       redirect_to new_subject_video_path(@subject), alert: 'There was an error creating the video. Please check your entries and try again.'
     end
+  end
+
+  def edit
+    @send_to_url = subject_video_path(@subject, @video)
+  end
+
+  def update
+    raise params.inspect
   end
 
   private
@@ -47,7 +56,7 @@ class VideosController < ApplicationController
   end
 
   def is_admin?
-    if !current_user.teacher
+    if !current_user.try(:teacher)
       redirect_to root_path, alert: 'Access Denied'
     end
   end

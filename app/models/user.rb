@@ -19,7 +19,6 @@ class User < ApplicationRecord
   end
 
   def can_access_video(video)
-    byebug
     videos.include?(video)
   end
 end
