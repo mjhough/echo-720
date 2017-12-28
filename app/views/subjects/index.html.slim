@@ -1,5 +1,5 @@
 h1 All Subjects
-= link_to 'New Subject', new_subject_path
+= link_to 'New Subject', new_subject_path if current_user.teacher?
 br
 br
 ul

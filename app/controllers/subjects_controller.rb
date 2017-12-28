@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :find_subject!, only: %i(show edit update new)
-  before_action :authenticate_user!, only: %i(index show)
+  before_action :authenticate_user!
   before_action :authenticate_access, only: %i(show edit new)
   before_action :is_admin?, only: %i(new create edit update)
 

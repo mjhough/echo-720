@@ -1,7 +1,7 @@
 class VideosController < ApplicationController
   before_action :find_video!, only: %i(show edit update)
   before_action :find_subject!, only: %i(create new show edit)
-  before_action :authenticate_user!, only: %i(index show)
+  before_action :authenticate_user!
   before_action :authenticate_access, only: %i(show edit)
   before_action :is_admin?, only: %i(new edit create update)
 
