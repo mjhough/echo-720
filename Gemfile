@@ -36,6 +36,8 @@ gem 'bootstrap', '4.0.0.alpha6'
 gem 'devise'
 gem 'slim-rails'
 gem 'jquery-rails'
+gem 'omniauth-microsoft-office365'
+gem 'dotenv-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
